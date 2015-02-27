@@ -17,20 +17,74 @@ namespace RawConsoleInput
             EventFlags = eventFlags;
         }
 
-        public bool IsLeftClick => 1 << 0 == (ButtonState & 1 << 0);
-        public bool IsRightClick => 1 << 1 == (ButtonState & 1 << 1);
-        public bool IsMiddleClick => 1 << 2 == (ButtonState & 1 << 2);
-        public bool IsShifted => 1 << 0 == (ControlKeyState & 1 << 0);
-        public bool IsCtrled => 1 << 1 == (ControlKeyState & 1 << 1);
-        public bool IsAlted => 1 << 2 == (ControlKeyState & 1 << 2);
-        public bool IsWinKeyed => 1 << 3 == (ControlKeyState & 1 << 3);
-        public bool IsDoubleClick => 1 << 1 == (EventFlags & 1 << 1);
-        public bool IsMouseDown => 0 == EventFlags;
-        public bool IsMouseMove => 1 == (EventFlags & 1);
+        public bool IsLeftClick
+        {
+            get { return 1 << 0 == (ButtonState & 1 << 0); }
+        }
 
-        public bool IsMouseWheelUp => (1 << 2 == (EventFlags & 1 << 2)) && (ButtonState > 0);
-        public bool IsMouseWheelDown => (1 << 2 == (EventFlags & 1 << 2)) && (ButtonState < 0);
-        public bool IsMouseWheelLeft => (1 << 3 == (EventFlags & 1 << 3)) && (ButtonState < 0);
-        public bool IsMouseWheelRight => (1 << 3 == (EventFlags & 1 << 3)) && (ButtonState > 0);
+        public bool IsRightClick
+        {
+            get { return 1 << 1 == (ButtonState & 1 << 1); }
+        }
+
+        public bool IsMiddleClick
+        {
+            get { return 1 << 2 == (ButtonState & 1 << 2); }
+        }
+
+        public bool IsShifted
+        {
+            get { return 1 == (ControlKeyState & 1 << 0); }
+        }
+
+        public bool IsCtrled
+        {
+            get { return 1 << 1 == (ControlKeyState & 1 << 1); }
+        }
+
+        public bool IsAlted
+        {
+            get { return 1 << 2 == (ControlKeyState & 1 << 2); }
+        }
+
+        public bool IsWinKeyed
+        {
+            get { return 1 << 3 == (ControlKeyState & 1 << 3); }
+        }
+
+        public bool IsDoubleClick
+        {
+            get { return 1 << 1 == (EventFlags & 1 << 1); }
+        }
+
+        public bool IsMouseDown
+        {
+            get { return 0 == EventFlags; }
+        }
+
+        public bool IsMouseMove
+        {
+            get { return 1 == (EventFlags & 1); }
+        }
+
+        public bool IsMouseWheelUp
+        {
+            get { return (1 << 2 == (EventFlags & 1 << 2)) && (ButtonState > 0); }
+        }
+
+        public bool IsMouseWheelDown
+        {
+            get { return (1 << 2 == (EventFlags & 1 << 2)) && (ButtonState < 0); }
+        }
+
+        public bool IsMouseWheelLeft
+        {
+            get { return (1 << 3 == (EventFlags & 1 << 3)) && (ButtonState < 0); }
+        }
+
+        public bool IsMouseWheelRight
+        {
+            get { return (1 << 3 == (EventFlags & 1 << 3)) && (ButtonState > 0); }
+        }
     }
 }

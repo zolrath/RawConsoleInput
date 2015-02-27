@@ -4,7 +4,8 @@ namespace RawConsoleInput
 {
     public class KeyboardInputEvent
     {
-        public KeyboardInputEvent(ushort virtualKeyCode, char unicodeChar, int controlkeyState, ushort repeatCount, bool keyDown)
+        public KeyboardInputEvent(ushort virtualKeyCode, char unicodeChar, int controlkeyState, ushort repeatCount,
+            bool keyDown)
         {
             VirtualKeyCode = virtualKeyCode;
             UnicodeChar = unicodeChar;
@@ -19,11 +20,34 @@ namespace RawConsoleInput
         public char UnicodeChar { get; set; }
         public int ControlKeyState { get; set; }
 
-        public ConsoleKey ConsoleKey => (ConsoleKey)VirtualKeyCode;
-        public ConsoleKeyInfo ConsoleKeyInfo => new ConsoleKeyInfo(UnicodeChar, ConsoleKey, IsShifted, IsAlted, IsCtrled );
-        public bool IsAlted => (1 << 1 == (ControlKeyState & 1 << 1)) || (1 << 0 == (ControlKeyState & 1 << 0));
-        public bool IsCtrled => 1 << 3 == (ControlKeyState & 1 << 3) || (1 << 2 == (ControlKeyState & 1 << 2));
-        public bool IsShifted => 1 << 4 == (ControlKeyState & 1 << 4);
-        public bool IsWinKeyed => 1 << 8 == (ControlKeyState & 1 << 8);
+        public ConsoleKey ConsoleKey
+        {
+            get { return (ConsoleKey) VirtualKeyCode; }
+        }
+
+        public ConsoleKeyInfo ConsoleKeyInfo
+        {
+            get { return new ConsoleKeyInfo(UnicodeChar, ConsoleKey, IsShifted, IsAlted, IsCtrled); }
+        }
+
+        public bool IsAlted
+        {
+            get { return (1 << 1 == (ControlKeyState & 1 << 1)) || (1 << 0 == (ControlKeyState & 1 << 0)); }
+        }
+
+        public bool IsCtrled
+        {
+            get { return 1 << 3 == (ControlKeyState & 1 << 3) || (1 << 2 == (ControlKeyState & 1 << 2)); }
+        }
+
+        public bool IsShifted
+        {
+            get { return 1 << 4 == (ControlKeyState & 1 << 4); }
+        }
+
+        public bool IsWinKeyed
+        {
+            get { return 1 << 8 == (ControlKeyState & 1 << 8); }
+        }
     }
 }
